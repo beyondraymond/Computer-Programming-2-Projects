@@ -3,8 +3,25 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <windows.h>
+
+
 
 using namespace std;
+enum ConsoleColors {
+    LightGreen = 10,
+    LightCyan = 11,
+    LightMagenta = 13,
+    Yellow = 14,
+    White = 15,
+    VioletYellow = 94,
+    VioletWhite = 95,
+    BlackWhite = 271
+};
+void setTextColor(ConsoleColors text)
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD) (text));
+}
 
 int changer(int fare, int payment,int change){
 	if(payment>fare){
@@ -12,6 +29,12 @@ int changer(int fare, int payment,int change){
 			}
 			return change;
 }
+
+struct customer{
+	string Name;
+	string start;
+	string end;
+};
 void charbug()
 	{if (cin.fail())
 				{
@@ -20,12 +43,6 @@ void charbug()
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				}
 			}
-
-struct customer{
-	string Name;
-	string start;
-	string end;
-};
 
 int main(){
 	
@@ -37,17 +54,37 @@ int main(){
 	int fare,j=1,i;
 	string station[]={"Santolan         ","Katipunan","Anonas           ", "Cubao", "Betty Go-Belmonte", "Gilmore", "J.Ruiz          ", "V.Mapa", "Pureza           ", "Legarda", "Recto"};
 	
+	setTextColor(VioletYellow);
+	cout<<" "<<endl;
+	cout<<"\tGood day Commuter! Welcome to,"<<endl<<endl;Sleep(500);
+	setTextColor(VioletWhite);
+	cout<<"\t#       ######  #######    #       ### #     # #######     #####  "<<endl;Sleep(500);
+	cout<<"\t#       #     #    #       #        #  ##    # #          #     # "<<endl;Sleep(500);
+	cout<<"\t#       #     #    #       #        #  # #   # #                # "<<endl;Sleep(500);
+	cout<<"\t#       ######     #       #        #  #  #  # #####       #####  "<<endl;Sleep(500);
+	cout<<"\t#       #   #      #       #        #  #   # # #          #       "<<endl;Sleep(500);
+	cout<<"\t#       #    #     #       #        #  #    ## #          #       "<<endl;Sleep(500);
+	cout<<"\t####### #     #    #       ####### ### #     # #######    ####### "<<endl;Sleep(1000);
+	setTextColor(VioletYellow);
+	cout<<setw(60)<<"\tBuy your ticket before going to the platform.";Sleep(3000);
+	setTextColor(BlackWhite);
+	
+	system("cls");
+	setTextColor(LightMagenta);
 	cout<<"====================================="<<endl<<endl;
+	setTextColor(Yellow);
 	cout<<setw(30)<<"LRT Line 2 - Purple Line"<<endl;
 	cout<<setw(30)<<"Select From the Following Stations"<<endl<<endl;
-	
+	setTextColor(LightCyan);
 	for(i=0; i<11; i++){
     cout<<station[i]<<"\t";
     if(i%2){cout<<endl;}
     }
 	cout<<endl;
+	setTextColor(LightMagenta);
 	cout<<"====================================="<<endl<<endl;
 	
+	setTextColor(White);
 	cout<<"Enter Your Name: ";
 	getline(cin, Name);
 	cout<<endl;
@@ -84,11 +121,16 @@ int main(){
 			fare=15;
 			
 			system("cls");
+			setTextColor(LightMagenta);
 			cout<<"====================================="<<endl<<endl;
+			setTextColor(Yellow);
 			cout<<"      Good day "<<Name<<"!"<<endl<<endl;
+			setTextColor(LightCyan);
 			cout<<"Single Line Journey: "<<start<<" to "<<end<<endl;
 			cout<<"Ticket Value: "<<fare<<endl<<endl;
+			setTextColor(LightMagenta);
 			cout<<"====================================="<<endl<<endl;
+			setTextColor(White);
 			cout<<"Please Enter Cash Amount: ";
 			cin>>payment;
 			cout<<endl;
@@ -912,34 +954,54 @@ int main(){
 		}
 	}
 	
-	cout<<endl<<endl;
+	
+	system("cls");
+	setTextColor(LightCyan);
+	cout<<"  "<<endl;
+	cout<<"######  ######  #######  #####  #######  #####   #####  ### #     #  #####        ######     #    #     # #     # ####### #     # #######             "<<endl;Sleep(500);
+	cout<<"#     # #     # #     # #     # #       #     # #     #  #  ##    # #     #       #     #   # #    #   #  ##   ## #       ##    #    #                "<<endl;Sleep(500);
+	cout<<"#     # #     # #     # #       #       #       #        #  # #   # #             #     #  #   #    # #   # # # # #       # #   #    #                "<<endl;Sleep(500);
+	cout<<"######  ######  #     # #       #####    #####   #####   #  #  #  # #  ####       ######  #     #    #    #  #  # #####   #  #  #    #                "<<endl;Sleep(500);
+	cout<<"#       #   #   #     # #       #             #       #  #  #   # # #     #       #       #######    #    #     # #       #   # #    #    ### ### ### "<<endl;Sleep(500);
+	cout<<"#       #    #  #     # #     # #       #     # #     #  #  #    ## #     #       #       #     #    #    #     # #       #    ##    #    ### ### ###"<<endl;Sleep(500);
+	cout<<"#       #     # #######  #####  #######  #####   #####  ### #     #  #####        #       #     #    #    #     # ####### #     #    #    ### ### ### "<<endl<<endl;Sleep(1000);
+	setTextColor(Yellow);
+	cout<<"This may take a few seconds. Please wait"<<endl;Sleep(2000);
+	cout<<"Printing your receipt."<<endl;Sleep(3000);
+	
+	system("cls");
+	setTextColor(LightMagenta);
 	cout<<"\t++++++++++++++++++++++++++++++++++++"<<endl<<endl;
+	setTextColor(Yellow);
 	cout<<"\t       LRT 2 - Purple Line          "<<endl;
-	cout<<"\t         Official Receipt           "<<endl;
-	cout<<"\t------------------------------------"<<endl;
+	cout<<"\t         Official Receipt           "<<endl<<endl;
+	setTextColor(LightMagenta);
+	cout<<"\t------------------------------------"<<endl<<endl;
+	setTextColor(LightCyan);
 	cout<<"\tCustomer: "<<Name<<endl;
 	cout<<"\tItinerary: "<<start<<" to "<<end<<endl;
 	cout<<"\tCash Amount: "<<payment<<endl;
-	cout<<"\tChange: "<<change<<endl;
-	cout<<"\t------------------------------------"<<endl;
+	cout<<"\tChange: "<<change<<endl<<endl;
+	setTextColor(LightMagenta);
+	cout<<"\t------------------------------------"<<endl<<endl;
+	setTextColor(Yellow);
 	cout<<"\tThank you for riding in LRT Line 2!"<<endl;
 	cout<<"\tPlease Proceed to the Train Platform"<<endl<<endl;
+	setTextColor(LightMagenta);
 	cout<<"\t++++++++++++++++++++++++++++++++++++"<<endl<<endl;
 	
-	ofstream sample ("Sample.txt");
+	ofstream receipt ("Receipt.txt");
 
-	sample<<"\t++++++++++++++++++++++++++++++++++++"<<endl<<endl;
-	sample<<"\t       LRT 2 - Purple Line          "<<endl;
-	sample<<"\t         Official Receipt           "<<endl;
-	sample<<"\t------------------------------------"<<endl;
-	sample<<"\tCustomer: "<<Name<<endl;
-	sample<<"\tItinerary: "<<start<<" to "<<end<<endl;
-	sample<<"\tCash Amount: "<<payment<<endl;
-	sample<<"\tChange: "<<change<<endl;
-	sample<<"\t-------------------------------------"<<endl;
-	sample<<"\tThank you for riding in LRT Line 2!"<<endl;
-	sample<<"\tPlease Proceed to the Train Platform"<<endl<<endl;
-	sample<<"\t++++++++++++++++++++++++++++++++++++"<<endl<<endl;
-	
+	receipt<<"\t++++++++++++++++++++++++++++++++++++"<<endl<<endl;
+	receipt<<"\t       LRT 2 - Purple Line          "<<endl;
+	receipt<<"\t         Official Receipt           "<<endl<<endl;
+	receipt<<"\t------------------------------------"<<endl<<endl;
+	receipt<<"\tCustomer: "<<Name<<endl;
+	receipt<<"\tItinerary: "<<start<<" to "<<end<<endl;
+	receipt<<"\tCash Amount: "<<payment<<endl;
+	receipt<<"\tChange: "<<change<<endl<<endl;
+	receipt<<"\t-------------------------------------"<<endl<<endl;
+	receipt<<"\tThank you for riding in LRT Line 2!"<<endl;
+	receipt<<"\tPlease Proceed to the Train Platform"<<endl<<endl;
+	receipt<<"\t++++++++++++++++++++++++++++++++++++"<<endl<<endl;
 }
-
